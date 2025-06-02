@@ -14,7 +14,7 @@ FROM node:alpine AS production
 WORKDIR /app
 
 COPY --from=builder /app/package.json ./
-RUN npm ci
+RUN npm install
 
 COPY --from=builder /app/.next ./next
 COPY --from=builder /app/public ./public
