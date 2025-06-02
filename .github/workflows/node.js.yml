@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [22]
+        node-version: [ '18', '20', '22' ]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -29,6 +29,7 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - name: Push to Docker Hub
+      
       run: |
         docker build -t farhan0212/frontend_next.js .
         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
